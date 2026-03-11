@@ -28,7 +28,7 @@ public class App {
         System.out.println("pour le Basic , taper  : 0 \n");
         System.out.println("pour le Highlife, taper  : 1 \n");
         System.out.println("pour le Daynight, taper  : 2 \n");
-        System.out.println("pour le Switch, taper  : 3 \n");
+        System.out.println("pour le Perso, taper  : 3 \n");
         System.out.println("pour la génération, taper  : 4 \n");
 
         int s=Integer.parseInt(ask.nextLine());
