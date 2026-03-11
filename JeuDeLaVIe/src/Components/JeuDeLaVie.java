@@ -67,7 +67,7 @@ public class JeuDeLaVie implements Observable{
                 }
 
                 this.grille[i][j]=new Cellule(i,j,x);
-                l.add(new LieuCellule(i*10+50, j*10+50, 10, 10,this.grille[i][j],f));
+                l.add(new LieuCellule(i*4, j*4, 4, 4,this.grille[i][j],f));
             }
         }
     }
