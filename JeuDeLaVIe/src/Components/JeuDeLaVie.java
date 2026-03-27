@@ -15,19 +15,22 @@ public class JeuDeLaVie implements Observable{
     List<Observateur> observateurs;
     public JeuDeLaVieUI ui;
 
+    private int temps;
 
 
 
-    public JeuDeLaVie(int x,int y){
 
-        this.setxMax(x);
-        this.setyMax(y);
+    public JeuDeLaVie(){
         this.observateurs=new ArrayList<Observateur>();
-        this.grille=new Cellule[xMax][yMax];
         this.commandes=new ArrayList<>();
+        this.temps=100;
     }
         
-        
+    public void start(int x,int y){
+        this.setxMax(x);
+        this.setyMax(y);
+        this.grille=new Cellule[xMax][yMax];
+    }
         
     public void attacheObservateur(Observateur o){
         this.observateurs.add(o);
@@ -107,6 +110,9 @@ public class JeuDeLaVie implements Observable{
     public JeuDeLaVieUI getUi() {
         return ui;
     }
+    public int getTemps() {
+        return temps;
+    }
     public void setGrille(Cellule[][] grille) {
         this.grille = grille;
     }
@@ -121,5 +127,8 @@ public class JeuDeLaVie implements Observable{
     }
     public void setUi(JeuDeLaVieUI ui) {
         this.ui = ui;
+    }
+    public void setTemps(int temps) {
+        this.temps = temps;
     }
 }

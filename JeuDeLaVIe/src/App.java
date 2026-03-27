@@ -1,16 +1,21 @@
+
 import Components.DayNight;
 import Components.FrameComponent;
 import Components.HighLife;
 import Components.JeuDeLaVie;
 import Components.JeuDeLaVieUI;
+import java.util.Scanner;
 import Components.TestGen;
 import Components.TestPerso;
 import Components.Texte;
 import Components.VisiteurClassique;
 
+import Components.Menu;
+
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.util.Scanner;
+
 
 import javax.swing.JFrame;
 
@@ -18,9 +23,15 @@ import javax.swing.JFrame;
 public class App {
     public static void main(String[] args) throws Exception {
 
+        /*
         FrameComponent frame=new FrameComponent();
         
-        JeuDeLaVie jeu=new JeuDeLaVie(100,100);
+        int xtemp=200;
+        int ytemp=200;
+
+
+        JeuDeLaVie jeu=new JeuDeLaVie();
+        jeu.start(xtemp, ytemp);
         JeuDeLaVieUI jeuUI=new JeuDeLaVieUI(jeu);
         jeu.initGrille(jeuUI.getListCellule(),jeuUI);
         jeu.attacheObservateur(jeuUI);
@@ -62,22 +73,30 @@ public class App {
         }
 
         ask.close();
-
+        
+        */
+        
         JFrame j=new JFrame();
         j=new JFrame();
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setVisible(Boolean.TRUE);
         Dimension d =Toolkit.getDefaultToolkit().getScreenSize();
         j.setSize(d) ;
-        
+        Menu men=new Menu(null);
+        for(Component c:men.composants()){
+            j.add(c);
+        }
+
+
+        /*
         jeuUI.setWindow(j, frame);
 
         while(true){
             jeu.calculNextGen();
             jeuUI.paint();
-            Thread.sleep(100);
+            Thread.sleep(jeu.getTemps());
         }
-
+        */
         
     }
 }
