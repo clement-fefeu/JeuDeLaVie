@@ -5,6 +5,7 @@ import java.util.List;
 
 
 
+
 public class JeuDeLaVie implements Observable{
     private Cellule [][] grille;
     private int xMax;

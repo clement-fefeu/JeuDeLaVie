@@ -3,11 +3,13 @@ import Components.FrameComponent;
 import Components.HighLife;
 import Components.JeuDeLaVie;
 import Components.JeuDeLaVieUI;
-import Components.TestPerso;
 import Components.TestGen;
+import Components.TestPerso;
 import Components.Texte;
 import Components.VisiteurClassique;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
@@ -17,14 +19,14 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         FrameComponent frame=new FrameComponent();
-        /* 
-        JButton b= new JButton("test");
         
-        frame.addComposant(b);
-        */
-
-
-        Scanner ask = new Scanner(System.in);
+        JeuDeLaVie jeu=new JeuDeLaVie(100,100);
+        JeuDeLaVieUI jeuUI=new JeuDeLaVieUI(jeu);
+        jeu.initGrille(jeuUI.getListCellule(),jeuUI);
+        jeu.attacheObservateur(jeuUI);
+        Texte t=new Texte(jeu);
+        jeu.attacheObservateur(t);
+        jeu.setUi(jeuUI);
 
         System.out.println("Choisissez le type de visiteur : \n");
         System.out.println("pour le Basic , taper  : 0 \n");
@@ -33,15 +35,8 @@ public class App {
         System.out.println("pour le Perso, taper  : 3 \n");
         System.out.println("pour la génération, taper  : 4 \n");
 
+        Scanner ask = new Scanner(System.in);
         int s=Integer.parseInt(ask.nextLine());
-
-        JeuDeLaVie jeu=new JeuDeLaVie(100,100);
-        JeuDeLaVieUI jeuUI=new JeuDeLaVieUI(jeu);
-        jeu.initGrille(jeuUI.getListCellule(),jeuUI);
-        jeu.attacheObservateur(jeuUI);
-        Texte t=new Texte(jeu);
-        jeu.attacheObservateur(t);
-        jeu.setUi(jeuUI);
 
         switch(s){
             case 0:
@@ -72,14 +67,15 @@ public class App {
         j=new JFrame();
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setVisible(Boolean.TRUE);
-        j.setSize(1000, 1000);
+        Dimension d =Toolkit.getDefaultToolkit().getScreenSize();
+        j.setSize(d) ;
         
         jeuUI.setWindow(j, frame);
 
         while(true){
             jeu.calculNextGen();
             jeuUI.paint();
-            Thread.sleep(1);
+            Thread.sleep(100);
         }
 
         
