@@ -10,6 +10,8 @@ import Components.VisiteurClassique;
 
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -34,7 +36,7 @@ public class App {
         int s=Integer.parseInt(ask.nextLine());
 
         JeuDeLaVie jeu=new JeuDeLaVie(100,100);
-        JeuDeLaVieUI jeuUI=new JeuDeLaVieUI(jeu,frame);
+        JeuDeLaVieUI jeuUI=new JeuDeLaVieUI(jeu);
         jeu.initGrille(jeuUI.getListCellule(),jeuUI);
         jeu.attacheObservateur(jeuUI);
         Texte t=new Texte(jeu);
@@ -66,10 +68,18 @@ public class App {
 
         ask.close();
 
+        JFrame j=new JFrame();
+        j=new JFrame();
+        j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        j.setVisible(Boolean.TRUE);
+        j.setSize(1000, 1000);
+        
+        jeuUI.setWindow(j, frame);
+
         while(true){
             jeu.calculNextGen();
             jeuUI.paint();
-            Thread.sleep(100);
+            Thread.sleep(1);
         }
 
         

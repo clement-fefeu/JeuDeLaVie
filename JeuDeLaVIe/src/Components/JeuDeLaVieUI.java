@@ -1,8 +1,8 @@
 package Components;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -14,32 +14,31 @@ import javax.swing.JFrame;
 
 
 
-public class JeuDeLaVieUI extends JFrame implements Observateur, MouseListener{
+public class JeuDeLaVieUI extends Component implements Observateur, MouseListener{
     
     JeuDeLaVie jeu;
     List<LieuCellule>  listCellule;
     Graphics g;
-    JFrame f;
 
     
-        public JeuDeLaVieUI(JeuDeLaVie jeu,FrameComponent ajoutFrame){
+        public JeuDeLaVieUI(JeuDeLaVie jeu){
 
-
+            super();
             addMouseListener(this);
             this.setJeu(jeu);
             this.listCellule=new ArrayList<>();
-            this.f=new JFrame();
-            this.f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.f.setVisible(Boolean.TRUE);
-            this.f.setSize(new Dimension(1000,1000));
-            for(Container c : ajoutFrame.getComposant()){
-                this.f.add(c);
-            }
-            this.g=f.getGraphics();
+            
+            
             
 
     }
 
+    public void setWindow(JFrame j,FrameComponent ajoutFrame){
+        for(Container c : ajoutFrame.getComposant()){
+                j.add(c);
+            }
+            this.g=j.getGraphics();
+    }
 
 
     public void actualise(){
@@ -104,11 +103,11 @@ public class JeuDeLaVieUI extends JFrame implements Observateur, MouseListener{
     }
     @Override
     public void mouseEntered(MouseEvent e) {
-        this.f.setBackground(Color.GREEN);
+        this.setBackground(Color.GREEN);
     }
     @Override
     public void mouseExited(MouseEvent e) {
-        this.f.setBackground(Color.WHITE);
+        this.setBackground(Color.WHITE);
     }
     @Override
     public void mousePressed(MouseEvent e) {
